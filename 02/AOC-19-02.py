@@ -1,7 +1,6 @@
 def intcode(x, y):
     with open('input.txt') as f:
-        arr = f.read().split(',')
-        arr = [int(x) for x in arr]
+        arr = [int(i) for i in f.read().split(',')]
         arr[1] = x
         arr[2] = y
         for i in range(0, len(arr), 4):
