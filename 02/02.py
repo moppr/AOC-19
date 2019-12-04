@@ -1,7 +1,10 @@
 def intcode_part1(text):
+    # turn full intcode input into array
     arr = [int(i) for i in text.split(',')]
+    # program inputs
     arr[1] = 12
     arr[2] = 2
+    #i represents each instruction pointer, perform operation based on it
     for i in range(0, len(arr), 4):
         if arr[i] == 99:
             break
@@ -26,7 +29,8 @@ def intcode_part2(x, y, text):
         print("x={} y={} 100*x+y={}".format(x, y, 100*x+y))
         return True
         
-def find_pair(text):            
+def find_pair(text):
+    # brute force which pair of inputs gets 19690720
     for x in range(99):
         for y in range(99):
             if intcode_part2(x, y, text):
