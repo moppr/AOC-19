@@ -17,13 +17,11 @@ def intcode_day2(text, noun, verb):
             i += 4
 
         elif opcode == 99: # HALT
-            return
+            return prog[0]
 
         else:
             print(f"Invalid opcode {opcode}")
             return
-
-    return prog[0]
 
 def find_pair(text):
     for noun in range(100):
