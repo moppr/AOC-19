@@ -17,11 +17,11 @@ def intcode_day2(text, noun, verb):
             i += 4
 
         elif opcode == 99: # HALT
-            break
+            return
 
         else:
             print(f"Invalid opcode {opcode}")
-            break
+            return
 
     return prog[0]
 

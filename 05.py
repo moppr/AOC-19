@@ -64,11 +64,11 @@ def intcode_day5(text, inputs):
             i += 4
 
         elif opcode == 99: # HALT
-            break
+            return
 
         else:
             print(f"Invalid opcode {opcode}")
-            break
+            return
 
 if __name__ == "__main__":
     with open('05.in') as f:
