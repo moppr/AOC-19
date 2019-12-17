@@ -20,7 +20,6 @@ def password(text):
             minPos = i
 
     minLayer = layers[minPos]
-    yield minLayer.count('1') * minLayer.count('2')
 
     result = layers[0]
     for i,layer in enumerate(layers):
@@ -33,7 +32,7 @@ def password(text):
     build = ""
     for row in image:
         build += ''.join(row) + "\n"
-    yield build[:-1].replace('2', ' ').replace('0', ' ').replace('1', '▓')
+    return minLayer.count('1') * minLayer.count('2'), build[:-1].replace('2', ' ').replace('0', ' ').replace('1', '▓')
     
 
 if __name__ == "__main__":
@@ -41,4 +40,4 @@ if __name__ == "__main__":
         text = f.read()
 
         pw = password(text)
-        print(next(pw), next(pw), sep='\n')
+        print(pw[0], pw[1], sep='\n')
