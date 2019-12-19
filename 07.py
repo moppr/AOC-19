@@ -1,8 +1,9 @@
 import itertools
 
 def intcode_day7(text, inputs, i=0):
-    prog = [int(i) for i in text.split(',')]
+    prog = [int(x) for x in text.split(',')]
     inputs = iter(inputs)
+    params = { 1:3, 2:3, 3:1, 4:1, 5:2, 6:2, 7:3, 8:3, 99:0 }
 
     while True:
         raw_opcode = prog[i]
@@ -14,52 +15,30 @@ def intcode_day7(text, inputs, i=0):
             raw_opcode //= 10
         modes = iter(modes)
 
-        val = lambda x : i+x if next(modes) == 1 else prog[i+x]
+        indices = [x if next(modes) else prog[x] for x in range(i+1, i+params[opcode]+1)]
+                
+        a,b,c = indices + [None] * (3 - len(indices)) # safeguard for when indices is less than 3
 
         if opcode == 1: # SUM
-            a = val(1)
-            b = val(2)
-            c = val(3) # should only be mode 0
             prog[c] = prog[a] + prog[b]
             i += 4
         elif opcode == 2: # PROD
-            a = val(1)
-            b = val(2)
-            c = val(3) # should only be mode 0
             prog[c] = prog[a] * prog[b]
             i += 4
         elif opcode == 3: # INPUT
-            a = val(1) # should only be mode 0
             prog[a] = next(inputs)
             i += 2
         elif opcode == 4: # OUTPUT
-            a = val(1)
             i += 2
             return prog[a], i
         elif opcode == 5: # JMP
-            a = val(1)
-            b = val(2)
-            if prog[a]:
-                i = prog[b]
-            else:
-                i += 3
+            i = prog[b] if prog[a] else i+3
         elif opcode == 6: # !JMP
-            a = val(1)
-            b = val(2)
-            if not prog[a]:
-                i = prog[b]
-            else:
-                i += 3
+            i = prog[b] if not prog[a] else i+3
         elif opcode == 7: # LT
-            a = val(1)
-            b = val(2)
-            c = val(3) # should only be mode 0
             prog[c] = 1 if prog[a] < prog[b] else 0
             i += 4
         elif opcode == 8: # EQ
-            a = val(1)
-            b = val(2)
-            c = val(3) # should only be mode 0
             prog[c] = 1 if prog[a] == prog[b] else 0
             i += 4
 
