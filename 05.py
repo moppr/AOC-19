@@ -1,5 +1,5 @@
 def intcode_day5(text, inputs):
-    prog = [int(i) for i in text.split(',')]
+    prog = [int(x) for x in text.split(',')]
     inputs = iter(inputs)
 
     i = 0 # instruction pointer

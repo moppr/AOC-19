@@ -1,5 +1,5 @@
 def intcode_day2(text, noun, verb):
-    prog = [int(i) for i in text.split(',')]
+    prog = [int(x) for x in text.split(',')]
     prog[1] = noun
     prog[2] = verb
 
