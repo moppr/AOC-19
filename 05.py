@@ -13,18 +13,8 @@ def intcode_day5(text, inputs):
             modes.append(raw_opcode % 10)
             raw_opcode //= 10
         modes = iter(modes)
-        
-        indices = []
-        for x in range(i+1, i+params[opcode]+1): # index of each of the arguments for the current opcode
-            m = next(modes)
-            index = x if m else prog[x]
 
-            if index < 0:
-                raise IndexError(f"Negative index {index} not allowed")
-            if index >= len(prog):
-                prog += [0] * (index - len(prog) + 1) # these can only really happen if m is 0 or 2
-                
-            indices.append(index)
+        indices = [x if next(modes) else prog[x] for x in range(i+1, i+params[opcode]+1)]
                 
         a,b,c = indices + [None] * (3 - len(indices)) # safeguard for when indices is less than 3
 
