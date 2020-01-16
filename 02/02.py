@@ -26,8 +26,7 @@ def intcode_day2(text, noun, verb):
 def find_pair(text):
     for noun in range(100):
         for verb in range(100):
-            res = intcode_day2(text, noun, verb)
-            if res == 19690720:
+            if intcode_day2(text, noun, verb) == 19690720:
                 return 100*noun + verb
 
 if __name__ == "__main__":

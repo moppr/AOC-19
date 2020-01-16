@@ -3,21 +3,22 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Day01{
-	
-	static Fuel fuel = new Fuel();
 
 	public static void main(String[] args) throws FileNotFoundException{
 		File input = new File("01\\01.in");
 		Scanner s = new Scanner(input);
+		Fuel fuel = new Fuel();
+		
 		int simpleTotal = 0, thoroughTotal = 0;
 		while (s.hasNextInt()){
-			int mass = s.nextInt();
-			simpleTotal += fuel.simpleFuel(mass);
-			thoroughTotal += fuel.thoroughFuel(mass);
+			fuel.setMass(s.nextInt());
+			simpleTotal += fuel.simpleFuel();
+			thoroughTotal += fuel.thoroughFuel();
 		}
 		
+		s.close();		
 		System.out.println(simpleTotal + ", " + thoroughTotal);
 
 	}
-
+	
 }

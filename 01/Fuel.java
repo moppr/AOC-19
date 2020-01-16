@@ -1,13 +1,19 @@
 public class Fuel{
 	
-	int simpleFuel(int mass){
+	int mass;
+	
+	public void setMass(int mass){
+		this.mass = mass;
+	}
+
+	public int simpleFuel(){
 		return Math.floorDiv(mass, 3) - 2;
 	}
 	
-	int thoroughFuel(int mass){
+	public int thoroughFuel(){
 		int total = 0;
 		while (mass > 0){
-			mass = simpleFuel(mass);
+			mass = simpleFuel();
 			total += Math.max(0, mass);
 		}
 		return total;
