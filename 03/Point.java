@@ -32,6 +32,10 @@ public class Point{
 		x++;
 	}
 	
+	/***
+	 * this method might not be necessary - try removing reset call from intersections
+	 * and seeing if outcome changes after optimizing
+	 */
 	public void reset(){
 		x = 0;
 		y = 0;

@@ -15,12 +15,12 @@ public class Intersections{
 	
 	private void generateIntersections(){		
 		ArrayList<HashMap<Point, Integer>> wires = new ArrayList<HashMap<Point, Integer>>();
+		Point curr = new Point(0,0);
 		
 		for (String wire : text){			
-			Point curr = new Point(0,0);
+			curr.reset();
 			int steps = 0;
 			HashMap<Point, Integer> visited = new HashMap<Point, Integer>();
-			curr.reset();
 			
 			for (String move : wire.split(",")){
 				char direction = move.charAt(0);

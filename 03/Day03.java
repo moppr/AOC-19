@@ -14,7 +14,7 @@ public class Day03{
 			text.add(s.nextLine());
 		}
 		
-		Intersections intersections = new Intersections(text);
+		Intersections2 intersections = new Intersections2(text);
 		s.close();
 		
 		System.out.println(intersections.getManhattan());
